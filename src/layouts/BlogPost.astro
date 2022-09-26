@@ -18,7 +18,7 @@ const {
 } = Astro.props;
 ---
 
-<html lang="en">
+<html lang="es">
 	<head>
 		<BaseHead title={title} description={description} />
 		<style>
@@ -34,7 +34,7 @@ const {
 	</head>
 
 	<body>
-		<Header />
+		<Header title={title} />
 		<main>
 			<article>
 				{heroImage && (
