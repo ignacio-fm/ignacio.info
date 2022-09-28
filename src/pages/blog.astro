@@ -1,5 +1,5 @@
 ---
-import Page from '../layouts/Page.astro';
+import PageLayout from '../layouts/PageLayout.astro';
 
 // Use Astro.glob() to fetch all posts, and then sort them by date.
 const posts = (await Astro.glob('./blog/*.{md,mdx}')).sort(
@@ -7,7 +7,7 @@ const posts = (await Astro.glob('./blog/*.{md,mdx}')).sort(
 );
 ---
 
-<Page>
+<PageLayout>
 	<section>
 		<ul>
 			{posts.map((post) => (
@@ -41,4 +41,4 @@ const posts = (await Astro.glob('./blog/*.{md,mdx}')).sort(
 			color: #8e32dc;
 		}
 	</style>
-</Page>
+</PageLayout>
