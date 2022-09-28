@@ -2,6 +2,7 @@
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import Avatar from "../components/Avatar.astro";
 import { SITE_TITLE, SITE_DESCRIPTION, SITE_LANGUAGE } from '../config';
 
 ---
@@ -9,6 +10,7 @@ import { SITE_TITLE, SITE_DESCRIPTION, SITE_LANGUAGE } from '../config';
 <!DOCTYPE html>
 <html lang={SITE_LANGUAGE}>
 	<head>
+		<Avatar />
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 		<style>
             /* Add here custom styles */
