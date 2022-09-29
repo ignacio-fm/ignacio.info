@@ -16,7 +16,7 @@ const { title, description, image = '/placeholder-social.jpg' } = Astro.props
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<!-- <link rel="icon" type="image/svg+xml" href="/favicon.svg" /> -->
 <meta name="generator" content={Astro.generator} />
 
 <SEO
@@ -24,18 +24,30 @@ const { title, description, image = '/placeholder-social.jpg' } = Astro.props
 	description={description}
 	noindex={false}
 	nofollow={false}
+	openGraph={{
+		basic: {
+			title: title,
+			type: "website",
+			image: `${new URL(image, Astro.url)}`,
+			url: `${Astro.url}`,
+		},
+		optional: {
+			description: description,
+		}
+	}}
+	twitter={{
+		card: "summary_large_image",
+		site: title,
+		creator: title,
+	}}
+	extend={{
+		link: [{ rel: "icon", type: "image/svg+xml", href: "/favicon.svg"}],
+		meta: [
+			{ name: "twitter:url", content: `${Astro.url}` },
+			{ name: "twitter:title", content: title },
+			{ name: "twitter:description", content: description },
+			{ name: "twitter:image", content: `${new URL(image, Astro.url)}` },
+		],
+	}}
 />
 
-<!-- Open Graph / Facebook -->
-<meta property="og:type" content="website" />
-<meta property="og:url" content={Astro.url} />
-<meta property="og:title" content={title} />
-<meta property="og:description" content={description} />
-<meta property="og:image" content={new URL(image, Astro.url)} />
-
-<!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content={Astro.url} />
-<meta property="twitter:title" content={title} />
-<meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={new URL(image, Astro.url)} />
