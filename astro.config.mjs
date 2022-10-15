@@ -1,22 +1,26 @@
-import { defineConfig } from 'astro/config';
-import image from '@astrojs/image';
-import mdx from '@astrojs/mdx';
-import sitemap from '@astrojs/sitemap';
-import tailwind from '@astrojs/tailwind';
+import { defineConfig } from "astro/config";
+import react from "@astrojs/react";
 import vercel from "@astrojs/vercel/serverless";
+import mdx from "@astrojs/mdx";
+import remarkGfm from "remark-gfm";
+import rehypePrism from "@mapbox/rehype-prism";
+import image from "@astrojs/image";
+import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://ignacio.info',
-  experimental: {
-    integrations: true
-  },
   output: "server",
   adapter: vercel(),
+  markdown: {
+    syntaxHighlight: "prism",
+  },
   integrations: [
-    mdx(),
+    react(),
+    image(),
+    mdx({
+      remarkPlugins: [remarkGfm],
+      rehypePlugins: [rehypePrism],
+    }),
     sitemap(),
-    tailwind(),
-    image()
   ],
 });

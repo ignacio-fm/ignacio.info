@@ -1,0 +1,70 @@
+---
+import "../style/global.css";
+---
+
+<html
+  class="antialiased h-full selection:bg-violet-500 selection:text-violet-100 dark:selection:bg-violet-400"
+  lang="es"
+>
+  <head>
+    <meta name="viewport" content="width=device-width" />
+
+    <script is:inline>
+      let mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+
+      function updateTheme(savedTheme) {
+        let theme = "system";
+        try {
+          if (!savedTheme) {
+            savedTheme = window.localStorage.theme;
+          }
+          if (savedTheme === "dark") {
+            theme = "dark";
+            document.documentElement.classList.add("dark");
+          } else if (savedTheme === "light") {
+            theme = "light";
+            document.documentElement.classList.remove("dark");
+          } else if (mediaQuery.matches) {
+            document.documentElement.classList.add("dark");
+          } else {
+            document.documentElement.classList.remove("dark");
+          }
+        } catch {
+          theme = "light";
+          document.documentElement.classList.remove("dark");
+        }
+        return theme;
+      }
+
+      function updateThemeWithoutTransitions(savedTheme) {
+        updateTheme(savedTheme);
+        document.documentElement.classList.add("[&_*]:!transition-none");
+        window.setTimeout(() => {
+          document.documentElement.classList.remove("[&_*]:!transition-none");
+        }, 10);
+      }
+
+      document.documentElement.setAttribute("data-theme", updateTheme());
+
+      new MutationObserver(([{ oldValue }]) => {
+        let newValue = document.documentElement.getAttribute("data-theme");
+        if (newValue !== oldValue) {
+          try {
+            window.localStorage.setItem("theme", newValue);
+          } catch {}
+          updateThemeWithoutTransitions(newValue);
+        }
+      }).observe(document.documentElement, {
+        attributeFilter: ["data-theme"],
+        attributeOldValue: true,
+      });
+
+      mediaQuery.addEventListener("change", updateThemeWithoutTransitions);
+      window.addEventListener("storage", updateThemeWithoutTransitions);
+    </script>
+  </head>
+
+  <body class="flex h-full flex-col dark:bg-zinc-900">
+    <slot />
+  </body>
+</html>
