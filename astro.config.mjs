@@ -9,6 +9,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://ignacio.info",
   output: "server",
   adapter: vercel(),
   markdown: {
