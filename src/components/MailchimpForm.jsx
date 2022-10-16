@@ -48,7 +48,7 @@ export default function App() {
                         <input required id="comments" name="comments" type="checkbox" className="w-4 h-4 text-violet-600 bg-gray-100 rounded border-gray-300 focus:ring-violet-500 dark:focus:ring-violet-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
                     </div>
                     <div className="ml-3 text-sm">
-                        <label htmlFor="comments" className="mt-4 text-xs text-zinc-600 dark:text-zinc-400">Acepto y confirmo haber leído la <a href="#" class="text-violet-500 dark:text-violet-400">política de privacidad</a></label>
+                        <label htmlFor="comments" className="mt-4 text-xs text-zinc-600 dark:text-zinc-400">Acepto y confirmo haber leído la <a href="#" className="text-violet-500 dark:text-violet-400">política de privacidad</a></label>
                     </div>
                 </div>
                 <div className="flex items-center">
