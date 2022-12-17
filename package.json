@@ -17,7 +17,7 @@
     "@astrojs/rss": "^1.0.1",
     "@astrojs/sitemap": "^1.0.0",
     "@astrojs/tailwind": "^2.0.1",
-    "@astrojs/vercel": "^2.0.1",
+    "@astrojs/vercel": "^2.3.6",
     "@headlessui/react": "^1.7.2",
     "@mapbox/rehype-prism": "^0.8.0",
     "use-mailchimp-form": "^3.0.3"
