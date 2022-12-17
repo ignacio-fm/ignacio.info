@@ -1,0 +1,38 @@
+---
+import SimpleLayout from "../layouts/SimpleLayout.astro";
+import Container from "../components/Container.astro";
+import Head from "../components/Head.astro";
+import ArticleLinkDetailed from "../components/ArticleLinkDetailed.astro";
+import type { Article } from "../components/ArticleLink.astro";
+
+const articles = (await Astro.glob("./articulos/*.{md,mdx}")).sort(
+    (a, b) =>
+        new Date(b.frontmatter.publishDate).valueOf() -
+        new Date(a.frontmatter.publishDate).valueOf()
+) as { frontmatter: Article }[];
+---
+
+<Head
+    title="Artículos"
+    description="Aquí encontrarás todas mis publicaciones relacionadas en Marketing Digital, SEO y SEM"
+/>
+<SimpleLayout
+  title="Artículos"
+  description="Aquí comparto mis artículos hablando de SEO, SEM y Marketing Digital."
+>
+    <Container class="mt-16 sm:mt-28">
+        <div
+            class="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40"
+        >
+            <div class="flex max-w-3xl flex-col space-y-16">
+                {
+                articles
+                    .slice(0, 5)
+                    .map((article) => (
+                        <ArticleLinkDetailed article={article.frontmatter} />
+                    ))
+                }
+            </div>
+        </div>
+    </Container>
+</SimpleLayout>
